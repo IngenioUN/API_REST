@@ -282,7 +282,7 @@
       },
       "parameters": []
     },
-    "/user/author-requests": {
+    "/author-request/all": {
       "parameters": [],
       "get": {
         "summary": "",
@@ -336,7 +336,7 @@
         "requestBody": {}
       }
     },
-    "/user/add-publication": {
+    "/publication/add-publication": {
       "post": {
         "summary": "",
         "operationId": "post-user-add-publication",
@@ -417,9 +417,10 @@
             }
           }
         }
-      }
+      },
+      "parameters": []
     },
-    "/user/author-request/{userId}": {
+    "/author-request/{userId}": {
       "parameters": [
         {
           "schema": {
@@ -466,7 +467,7 @@
         "description": "Obtener informacion de usuario como administrador"
       }
     },
-    "/user/accepted-author/{userId}": {
+    "user/accepted-author/{userId}": {
       "parameters": [
         {
           "schema": {
@@ -551,7 +552,7 @@
         }
       }
     },
-    "/user/request-author-role": {
+    "/author-request/request": {
       "post": {
         "summary": "",
         "operationId": "post-user-request-author-role",
@@ -625,7 +626,8 @@
             }
           }
         }
-      }
+      },
+      "parameters": []
     }
   },
   "components": {
