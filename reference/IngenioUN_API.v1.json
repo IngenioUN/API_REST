@@ -282,7 +282,7 @@
       },
       "parameters": []
     },
-    "/author-request/all": {
+    "/user/author-requests": {
       "parameters": [],
       "get": {
         "summary": "",
@@ -336,7 +336,7 @@
         "requestBody": {}
       }
     },
-    "/publication/add-publication": {
+    "/user/add-publication": {
       "post": {
         "summary": "",
         "operationId": "post-user-add-publication",
@@ -417,10 +417,9 @@
             }
           }
         }
-      },
-      "parameters": []
+      }
     },
-    "/author-request/{userId}": {
+    "/user/author-request/{userId}": {
       "parameters": [
         {
           "schema": {
@@ -467,7 +466,7 @@
         "description": "Obtener informacion de usuario como administrador"
       }
     },
-    "user/accepted-author/{userId}": {
+    "/user/accepted-author/{userId}": {
       "parameters": [
         {
           "schema": {
@@ -552,7 +551,7 @@
         }
       }
     },
-    "/author-request/request": {
+    "/user/request-author-role": {
       "post": {
         "summary": "",
         "operationId": "post-user-request-author-role",
@@ -626,8 +625,7 @@
             }
           }
         }
-      },
-      "parameters": []
+      }
     }
   },
   "components": {
@@ -654,7 +652,7 @@
           "description": {
             "type": "string"
           },
-          "type": {
+          "role": {
             "type": "integer",
             "description": "0 -> Usuario\n1 -> Autor\n2 -> Administrador"
           },
@@ -677,12 +675,14 @@
           "lastName",
           "email1",
           "password",
-          "type"
-        ]
+          "role"
+        ],
+        "description": ""
       },
       "AuthorRequest": {
         "title": "AuthorRequest",
         "type": "object",
+        "x-examples": {},
         "properties": {
           "id": {
             "type": "string"
@@ -701,6 +701,9 @@
           },
           "academicHistory": {
             "type": "string"
+          },
+          "userId ": {
+            "type": "string"
           }
         },
         "required": [
@@ -709,8 +712,10 @@
           "email2",
           "professionalCard",
           "amploymentHistory",
-          "academicHistory"
-        ]
+          "academicHistory",
+          "userId "
+        ],
+        "description": ""
       },
       "Publication": {
         "title": "Publication",
