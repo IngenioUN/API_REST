@@ -201,7 +201,7 @@
         },
         "operationId": "get-ingenio-signout",
         "requestBody": {},
-        "description": "Salir de sesion  "
+        "description": "Cerrar de sesion  "
       },
       "parameters": []
     },
@@ -269,7 +269,7 @@
           }
         },
         "operationId": "get-ingenio",
-        "description": "Obtener información basica",
+        "description": "Obtener información basica del perfil de un usuario",
         "requestBody": {
           "content": {
             "application/json": {
@@ -282,7 +282,7 @@
       },
       "parameters": []
     },
-    "/user/author-requests": {
+    "/author-request/all": {
       "parameters": [],
       "get": {
         "summary": "",
@@ -336,7 +336,7 @@
         "requestBody": {}
       }
     },
-    "/user/add-publication": {
+    "/publication/add-publication": {
       "post": {
         "summary": "",
         "operationId": "post-user-add-publication",
@@ -417,9 +417,10 @@
             }
           }
         }
-      }
+      },
+      "parameters": []
     },
-    "/user/author-request/{userId}": {
+    "/author-request/{userId}": {
       "parameters": [
         {
           "schema": {
@@ -463,7 +464,7 @@
           }
         },
         "operationId": "get-user-author-request-userId",
-        "description": "Obtener informacion de usuario como administrador"
+        "description": "Obtener informacion de una solicitud específica para adquirir el rol de autor"
       }
     },
     "/user/accepted-author/{userId}": {
@@ -551,7 +552,7 @@
         }
       }
     },
-    "/user/request-author-role": {
+    "/author-request/request": {
       "post": {
         "summary": "",
         "operationId": "post-user-request-author-role",
@@ -624,8 +625,10 @@
               }
             }
           }
-        }
-      }
+        },
+        "description": "Agregar una nueva solicitud de rol de autor"
+      },
+      "parameters": []
     }
   },
   "components": {
@@ -738,6 +741,9 @@
           },
           "text": {
             "type": "string"
+          },
+          "userId": {
+            "type": "string"
           }
         },
         "required": [
@@ -746,8 +752,26 @@
           "title",
           "abstract",
           "keyWords",
-          "text"
-        ]
+          "text",
+          "userId"
+        ],
+        "description": ""
+      },
+      "Category": {
+        "title": "Category",
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          }
+        },
+        "description": "Categoría de una publicación"
       }
     }
   }
