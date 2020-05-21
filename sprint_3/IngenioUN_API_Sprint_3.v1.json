@@ -151,11 +151,12 @@
                   },
                   "password": {
                     "type": "string"
-                  },
-                  "": {
-                    "type": "string"
                   }
-                }
+                },
+                "required": [
+                  "email1",
+                  "password"
+                ]
               }
             }
           }
@@ -185,6 +186,21 @@
           },
           "400": {
             "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
             "content": {
               "application/json": {
                 "schema": {
@@ -229,8 +245,9 @@
                     "description": {
                       "type": "string"
                     },
-                    "type": {
-                      "type": "integer"
+                    "role": {
+                      "type": "integer",
+                      "description": "0 -> Usuario\n1 -> Autor\n2 -> Admin"
                     }
                   }
                 }
@@ -320,11 +337,38 @@
                         },
                         "_id": {
                           "type": "string"
-                        },
-                        "": {
-                          "type": "string"
                         }
                       }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
                     }
                   }
                 }
@@ -365,9 +409,6 @@
                   "properties": {
                     "message": {
                       "type": "string"
-                    },
-                    "": {
-                      "type": "string"
                     }
                   }
                 }
@@ -382,9 +423,6 @@
                   "type": "object",
                   "properties": {
                     "message": {
-                      "type": "string"
-                    },
-                    "": {
                       "type": "string"
                     }
                   }
@@ -411,8 +449,26 @@
                   },
                   "text": {
                     "type": "string"
+                  },
+                  "category": {
+                    "type": "object",
+                    "required": [
+                      "name"
+                    ],
+                    "properties": {
+                      "name": {
+                        "type": "string"
+                      }
+                    }
                   }
-                }
+                },
+                "required": [
+                  "title",
+                  "abstact",
+                  "keyWords",
+                  "text",
+                  "category"
+                ]
               }
             }
           }
@@ -420,17 +476,8 @@
       },
       "parameters": []
     },
-    "/author-request/{userId}": {
-      "parameters": [
-        {
-          "schema": {
-            "type": "string"
-          },
-          "name": "userId",
-          "in": "path",
-          "required": true
-        }
-      ],
+    "/author-request/get-author-request": {
+      "parameters": [],
       "get": {
         "summary": "Your GET endpoint",
         "tags": [],
@@ -458,47 +505,6 @@
                 }
               }
             }
-          },
-          "401": {
-            "description": "Unauthorized"
-          }
-        },
-        "operationId": "get-user-author-request-userId",
-        "description": "Obtener informacion de una solicitud específica para adquirir el rol de autor"
-      }
-    },
-    "/user/accepted-author/{userId}": {
-      "parameters": [
-        {
-          "schema": {
-            "type": "string"
-          },
-          "name": "userId",
-          "in": "path",
-          "required": true
-        }
-      ],
-      "put": {
-        "summary": "",
-        "operationId": "put-user-accepted-author-userId",
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "message": {
-                      "type": "string"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "201": {
-            "description": "Created"
           },
           "400": {
             "description": "Bad Request",
@@ -531,18 +537,16 @@
             }
           }
         },
-        "description": "Cambiar rol de usuario a autor",
+        "operationId": "get-user-author-request-userId",
+        "description": "Obtener informacion de una solicitud específica para adquirir el rol de autor",
         "requestBody": {
           "content": {
-            "application/xml": {
+            "application/json": {
               "schema": {
                 "type": "object",
                 "properties": {
-                  "_id": {
+                  "userId": {
                     "type": "string"
-                  },
-                  "type": {
-                    "type": "integer"
                   }
                 }
               }
@@ -552,7 +556,82 @@
         }
       }
     },
-    "/author-request/request": {
+    "/user/add-author": {
+      "parameters": [],
+      "put": {
+        "summary": "",
+        "operationId": "put-user-accepted-author-userId",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "description": "Cambiar rol de usuario a autor y poblar los datos extras",
+        "requestBody": {
+          "content": {
+            "application/xml": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "userId": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "userId"
+                ]
+              }
+            }
+          },
+          "description": ""
+        }
+      }
+    },
+    "/author-request/add-author-request": {
       "post": {
         "summary": "",
         "operationId": "post-user-request-author-role",
@@ -621,7 +700,13 @@
                   "academicHistory": {
                     "type": "string"
                   }
-                }
+                },
+                "required": [
+                  "email2",
+                  "professionalCard",
+                  "employmentHistory",
+                  "academicHistory"
+                ]
               }
             }
           }
@@ -629,6 +714,245 @@
         "description": "Agregar una nueva solicitud de rol de autor"
       },
       "parameters": []
+    },
+    "/category/all": {
+      "get": {
+        "summary": "Your GET endpoint",
+        "tags": [],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {}
+              }
+            }
+          }
+        },
+        "operationId": "get-category-all",
+        "description": "Obtener una lista con todas las categorías"
+      }
+    },
+    "/category/add-category": {
+      "get": {
+        "summary": "Your GET endpoint",
+        "tags": [],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-category-add-category",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "description": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "description": "Agregar una categoría desde el rol Administrador"
+      }
+    },
+    "/publication/get-publication": {
+      "parameters": [],
+      "get": {
+        "summary": "Your GET endpoint",
+        "tags": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "date": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "lastName": {
+                      "type": "string"
+                    },
+                    "userId": {
+                      "type": "string"
+                    },
+                    "title": {
+                      "type": "string"
+                    },
+                    "abstract": {
+                      "type": "string"
+                    },
+                    "keyWords": {
+                      "type": "string"
+                    },
+                    "text": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {}
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-publication-publicationId",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "id"
+                ]
+              }
+            }
+          }
+        },
+        "description": "Obtener una publicación en específico."
+      }
     }
   },
   "components": {
@@ -723,6 +1047,7 @@
       "Publication": {
         "title": "Publication",
         "type": "object",
+        "description": "",
         "properties": {
           "id": {
             "type": "string"
@@ -744,6 +1069,15 @@
           },
           "userId": {
             "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "lastName": {
+            "type": "string"
+          },
+          "category": {
+            "type": "string"
           }
         },
         "required": [
@@ -753,9 +1087,11 @@
           "abstract",
           "keyWords",
           "text",
-          "userId"
-        ],
-        "description": ""
+          "userId",
+          "name",
+          "lastName",
+          "category"
+        ]
       },
       "Category": {
         "title": "Category",
