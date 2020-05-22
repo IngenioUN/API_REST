@@ -221,7 +221,7 @@
       },
       "parameters": []
     },
-    "/user/my-personal-data": {
+    "/user/get-personal-data": {
       "get": {
         "summary": "Your GET endpoint",
         "tags": [],
@@ -286,20 +286,11 @@
           }
         },
         "operationId": "get-ingenio",
-        "description": "Obtener información basica del perfil de un usuario",
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object"
-              }
-            }
-          }
-        }
+        "description": "Obtener información basica del perfil de un usuario"
       },
       "parameters": []
     },
-    "/author-request/all": {
+    "/author-request/get-all-author-requests": {
       "parameters": [],
       "get": {
         "summary": "",
@@ -469,6 +460,19 @@
                   "text",
                   "category"
                 ]
+              },
+              "examples": {
+                "example-body": {
+                  "value": {
+                    "title": "Gatito con botas",
+                    "abstract": "Un gatitu con botitas inteligente",
+                    "keyWords": "gato, botas , inteligente",
+                    "text": "Había una vez un gatito muy listo...",
+                    "listCategories": [
+                      "5ec6b12910efb72abcc5a566"
+                    ]
+                  }
+                }
               }
             }
           }
@@ -715,13 +719,12 @@
       },
       "parameters": []
     },
-    "/category/all": {
+    "/category/get-all-categories": {
       "get": {
         "summary": "Your GET endpoint",
         "tags": [],
         "responses": {
-          "201": {
-            "description": "Created",
+          "200": {
             "content": {
               "application/json": {
                 "schema": {
@@ -734,9 +737,24 @@
                       "type": "string"
                     }
                   }
+                },
+                "examples": {
+                  "example-200": {
+                    "value": [
+                      {
+                        "_id": "5ec6b12910efb72abcc5a566",
+                        "name": "Ingeniería"
+                      },
+                      {
+                        "_id": "5ec72404e2ef0b18bd2ba594",
+                        "name": "Ecología"
+                      }
+                    ]
+                  }
                 }
               }
-            }
+            },
+            "description": ""
           },
           "400": {
             "description": "Bad Request",
@@ -752,27 +770,12 @@
                 }
               }
             }
-          },
-          "401": {
-            "description": "Unauthorized",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "message": {
-                      "type": "string"
-                    }
-                  }
-                },
-                "examples": {}
-              }
-            }
           }
         },
         "operationId": "get-category-all",
         "description": "Obtener una lista con todas las categorías"
-      }
+      },
+      "parameters": []
     },
     "/category/add-category": {
       "get": {
@@ -865,13 +868,7 @@
                     "date": {
                       "type": "string"
                     },
-                    "name": {
-                      "type": "string"
-                    },
-                    "lastName": {
-                      "type": "string"
-                    },
-                    "userId": {
+                    "authorId": {
                       "type": "string"
                     },
                     "title": {
@@ -885,10 +882,34 @@
                     },
                     "text": {
                       "type": "string"
+                    },
+                    "listCategories": {
+                      "type": "string"
                     }
                   }
                 },
-                "examples": {}
+                "examples": {
+                  "example-200": {
+                    "value": {
+                      "keyWords": [
+                        "conejo",
+                        "pais",
+                        "maravillas"
+                      ],
+                      "listCategories": [
+                        "5ec6b12910efb72abcc5a566",
+                        "5ec6b12910efb72abcc5a566"
+                      ],
+                      "_id": "5ec6f43ae6aa851263f6bed2",
+                      "title": "Alicia en el pais",
+                      "abstract": "Tipa en las drogas",
+                      "text": "Había una vez una tipa en las drogas :v",
+                      "date": "2020-05-21T21:35:54.099Z",
+                      "authorId": "5ec0a24e6802f95bbb46f2a8",
+                      "__v": 0
+                    }
+                  }
+                }
               }
             }
           },
@@ -934,6 +955,13 @@
                     "type": "string"
                   }
                 }
+              },
+              "examples": {
+                "example-body": {
+                  "value": {
+                    "id": "5ec6f43ae6aa851263f6bed2"
+                  }
+                }
               }
             },
             "application/xml": {
@@ -949,9 +977,192 @@
                 ]
               }
             }
-          }
+          },
+          "description": ""
         },
         "description": "Obtener una publicación en específico."
+      }
+    },
+    "/category/get-list-categories": {
+      "get": {
+        "summary": "Your GET endpoint",
+        "tags": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "example-1": {
+                    "value": [
+                      {
+                        "id": "asgffdg1234",
+                        "name": "Ingeniería"
+                      },
+                      {
+                        "id": "1234rfg",
+                        "name": "Ecología"
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "example-1": {
+                    "value": [
+                      {
+                        "_id": "5ec6b12910efb72abcc5a566",
+                        "name": "Ingeniería"
+                      },
+                      {
+                        "_id": "5ec72404e2ef0b18bd2ba594",
+                        "name": "Ecología"
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-category-get-list-categories",
+        "description": "Dada una lista de IDs de categorias, obtener una lista con la información de las categorías solicitadas",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "listCategories": {
+                    "type": "string"
+                  }
+                }
+              },
+              "examples": {
+                "example-1": {
+                  "value": {
+                    "listCategories": [
+                      "asgffdg1234",
+                      "1234rfg"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/publication/get-all-publications": {
+      "get": {
+        "summary": "Your GET endpoint",
+        "tags": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "date": {
+                      "type": "string"
+                    },
+                    "title": {
+                      "type": "string"
+                    },
+                    "abstract": {
+                      "type": "string"
+                    },
+                    "keyWords": {
+                      "type": "string"
+                    },
+                    "text": {
+                      "type": "string"
+                    },
+                    "authorId": {
+                      "type": "string"
+                    },
+                    "listCategories": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "example-200": {
+                    "value": [
+                      {
+                        "keyWords": [
+                          "conejo",
+                          "pais",
+                          "maravillas"
+                        ],
+                        "listCategories": [
+                          "5ec6b12910efb72abcc5a566",
+                          "5ec6b12910efb72abcc5a566"
+                        ],
+                        "_id": "5ec6f43ae6aa851263f6bed2",
+                        "title": "Alicia en el pais",
+                        "abstract": "Tipa loca en las drogas",
+                        "text": "Había una vez una tipa en las drogas :v",
+                        "date": "2020-05-21T21:35:54.099Z",
+                        "authorId": "5ec0a24e6802f95bbb46f2a8",
+                        "__v": 0
+                      },
+                      {
+                        "keyWords": [
+                          "gato",
+                          "botas",
+                          "inteligente"
+                        ],
+                        "listCategories": [
+                          "5ec6b12910efb72abcc5a566"
+                        ],
+                        "_id": "5ec72326e2ef0b18bd2ba593",
+                        "title": "Gatito con botas",
+                        "abstract": "Un gatitu con botitas inteligente",
+                        "text": "Había una vez un gatito muy listo...",
+                        "date": "2020-05-22T00:56:06.185Z",
+                        "authorId": "5ec0a24e6802f95bbb46f2a8",
+                        "__v": 0
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-publication-get-all-publications",
+        "description": "Obtener una lista con todas las publicaciones"
       }
     }
   },
