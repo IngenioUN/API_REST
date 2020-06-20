@@ -1176,7 +1176,17 @@
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "properties": {}
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "firstName": {
+                      "type": "string"
+                    },
+                    "lastName": {
+                      "type": "string"
+                    }
+                  }
                 },
                 "examples": {
                   "Ejemplo": {
@@ -1320,7 +1330,7 @@
         }
       ]
     },
-    "/category/get-user-categories/{userId}": {
+    "/user/get-user-categories/{userId}": {
       "get": {
         "summary": "Your GET endpoint",
         "tags": [],
@@ -1354,6 +1364,12 @@
                 }
               }
             }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
           }
         },
         "operationId": "get-category-get-user-categories",
@@ -1381,7 +1397,20 @@
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "properties": {}
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "following": {
+                      "type": "string"
+                    },
+                    "firstName": {
+                      "type": "string"
+                    },
+                    "lastName": {
+                      "type": "string"
+                    }
+                  }
                 },
                 "examples": {
                   "Ejemplo": {
@@ -1690,6 +1719,47 @@
           "required": true
         }
       ]
+    },
+    "/publication/get-publications-by-author": {
+      "get": {
+        "summary": "Your GET endpoint",
+        "tags": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "publicationId": {
+                      "type": "string"
+                    },
+                    "publicationName": {
+                      "type": "string"
+                    },
+                    "date": {
+                      "type": "string"
+                    },
+                    "numCategories": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "operationId": "get-publication-get-publications-by-author",
+        "description": "Se obtiene una lista de todas las publicaciones en las que el autor logueado ha participado"
+      },
+      "parameters": []
     }
   },
   "components": {
