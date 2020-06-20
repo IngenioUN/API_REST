@@ -1179,7 +1179,20 @@
                   "properties": {}
                 },
                 "examples": {
-                  "example-1": {}
+                  "Ejemplo": {
+                    "value": [
+                      {
+                        "id": "34tirjf84890ijnhry78u9i9oj",
+                        "firstName": "name_1",
+                        "lastNmae": "lastName_1"
+                      },
+                      {
+                        "id": "7890dfa4tirjfjnhry78u9i9oj",
+                        "firstName": "name_2",
+                        "lastNmae": "lastName_2"
+                      }
+                    ]
+                  }
                 }
               }
             }
@@ -1233,15 +1246,6 @@
         }
       ]
     },
-    "/user/get-following": {
-      "get": {
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
     "/user/stop-following/{userId}": {
       "get": {
         "summary": "Your GET endpoint",
@@ -1272,13 +1276,6 @@
         }
       ]
     },
-    "/user/stop-following": {
-      "parameters": [
-        {
-          "required": true
-        }
-      ]
-    },
     "/user/start-following/{userId}": {
       "get": {
         "summary": "Your GET endpoint",
@@ -1290,7 +1287,11 @@
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "properties": {}
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  }
                 },
                 "examples": {
                   "example-1": {}
@@ -1306,7 +1307,7 @@
           }
         },
         "operationId": "get-user-start-following",
-        "description": "Añadir seguidor en la lista de usuario. actualizar en ambos."
+        "description": "Añadir seguidor en la lista de usuario. actualizar en ambos. \n\nPuede mandar Id de Autor, Usuario, Categoria."
       },
       "parameters": [
         {
@@ -1345,6 +1346,9 @@
                     },
                     "publications": {
                       "type": "number"
+                    },
+                    "notifications": {
+                      "type": "number"
                     }
                   }
                 }
@@ -1353,7 +1357,7 @@
           }
         },
         "operationId": "get-category-get-user-categories",
-        "description": "Obtiene la lista de categorias e indica si se esta sucrito a cada uno de ellas"
+        "description": "Obtiene la lista de categorias e indica si se esta sucrito a cada uno de ellas.\n\nAdemas obtenemos el nuimero total de notificaciones recientes.\n\n(El parametro notifications no se mostrara sino se encuentra el usuario en su perfil Y si no esta suscrito (FRONT))"
       },
       "parameters": [
         {
@@ -1365,72 +1369,6 @@
           "required": true
         }
       ]
-    },
-    "/category/get-user-categories": {
-      "parameters": [
-        {
-          "required": true
-        },
-        {
-          "schema": {
-            "type": "string"
-          },
-          "name": "",
-          "in": "path"
-        }
-      ],
-      "get": {
-        "summary": "",
-        "operationId": "get-category-get-user-categories",
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "categoryId": {
-                      "type": "string"
-                    },
-                    "name": {
-                      "type": "string"
-                    },
-                    "description": {
-                      "type": "string"
-                    },
-                    "subscribe": {
-                      "type": "boolean"
-                    },
-                    "publications": {
-                      "type": "number"
-                    },
-                    "notifications": {
-                      "type": "number"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad Request"
-          },
-          "401": {
-            "description": "Unauthorized"
-          }
-        },
-        "description": "Obtener lista de todas las categorias e indica si el usuario esta inscrito a una de ellas."
-      }
-    },
-    "/category/get-category-notifications": {
-      "get": {
-        "summary": "Your GET endpoint",
-        "tags": [],
-        "responses": {},
-        "operationId": "get-category-get-category-notifications",
-        "description": ""
-      }
     },
     "/user/get-followers/{userId}": {
       "get": {
@@ -1444,6 +1382,24 @@
                 "schema": {
                   "type": "object",
                   "properties": {}
+                },
+                "examples": {
+                  "Ejemplo": {
+                    "value": [
+                      {
+                        "id": "34tirjf84890ijnhry78u9i9oj",
+                        "following": "0",
+                        "firstName": "name_1",
+                        "lastNmae": "lastName_1"
+                      },
+                      {
+                        "id": "7890dfa4tirjfjnhry78u9i9oj",
+                        "following": "1",
+                        "firstName": "name_2",
+                        "lastNmae": "lastName_2"
+                      }
+                    ]
+                  }
                 }
               }
             }
@@ -1468,15 +1424,201 @@
         }
       ]
     },
-    "/user/get-followers": {
+    "/notification/get-notifications/{Id}": {
+      "get": {
+        "summary": "Your GET endpoint",
+        "tags": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "Caso Category ": {
+                    "value": [
+                      {
+                        "id": "0",
+                        "publicationId": "125651253",
+                        "publicationName": "Test",
+                        "categoryName": "Ingenieria",
+                        "authorName": "pepito",
+                        "authorLastName": "perez"
+                      },
+                      {
+                        "id": "0",
+                        "publicationId": "125651253",
+                        "publicationName": "Test",
+                        "categoryName": "Ingenieria",
+                        "authorName": "pepito",
+                        "authorLastName": "perez"
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "operationId": "get-notification-get-notifications",
+        "description": "Obtiene todas las notificaciones de un usuario para una categoria o un autor.\nEnviar:   \n        -  authorId\n        -  categoryId"
+      },
       "parameters": [
         {
+          "schema": {
+            "type": "string"
+          },
+          "name": "Id",
+          "in": "path",
           "required": true
+        }
+      ]
+    },
+    "/notification/remove-notification/{notificationId}": {
+      "get": {
+        "summary": "Your GET endpoint",
+        "tags": [],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "operationId": "get-notification-remove-notification",
+        "description": "Eliminar notificacion del usuario."
+      },
+      "parameters": [
+        {
+          "schema": {
+            "type": "string"
+          },
+          "name": "notificationId",
+          "in": "path",
+          "required": true
+        }
+      ]
+    },
+    "/notification/remove-all-notification/{Id}": {
+      "get": {
+        "summary": "Your GET endpoint",
+        "tags": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "operationId": "get-notification-remove-all-notification",
+        "description": "Remueve todas las notificaciones de categoryId o authorId"
+      },
+      "parameters": [
+        {
+          "schema": {
+            "type": "string"
+          },
+          "name": "Id",
+          "in": "path",
+          "required": true
+        }
+      ]
+    },
+    "/user/get-saved-publications/{userId}": {
+      "parameters": [
+        {
+          "schema": {
+            "type": "string"
+          },
+          "name": "userId",
+          "in": "path"
         }
       ],
       "get": {
         "summary": "",
-        "operationId": "get-user-get-followers",
+        "operationId": "get-user-get-saved-publications-userId",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "publicationId": {
+                      "type": "string"
+                    },
+                    "namePublication": {
+                      "type": "string"
+                    },
+                    "abstract": {
+                      "type": "string"
+                    },
+                    "listCategories": {
+                      "type": "array",
+                      "items": {}
+                    },
+                    "authorName": {
+                      "type": "string"
+                    },
+                    "authorLastName": {
+                      "type": "string"
+                    },
+                    "authorId": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "description": "Obtiene las publicaciones guardadas por el usuario de userId o por mí."
+      }
+    },
+    "/user/get-users/{rol}": {
+      "get": {
+        "summary": "Your GET endpoint",
+        "tags": [],
         "responses": {
           "200": {
             "description": "OK",
@@ -1487,13 +1629,67 @@
                   "properties": {}
                 },
                 "examples": {
-                  "example-1": {}
+                  "Caso Usuarios": {
+                    "value": [
+                      {
+                        "userId": "34tirjf84890ijnhry78u9i9oj",
+                        "name": "0",
+                        "lastName": "name_1",
+                        "email1": "lastName_1"
+                      },
+                      {
+                        "userId": "34tirjf84890ijnhry78u9i9oj",
+                        "name": "0",
+                        "lastName": "name_1",
+                        "email1": "lastName_1"
+                      }
+                    ]
+                  },
+                  "Caso Autores": {
+                    "value": [
+                      {
+                        "userId": "34tirjf84890ijnhry78u9i9oj",
+                        "name": "0",
+                        "lastName": "name_1",
+                        "email2": "lastName_1",
+                        "publications": "5"
+                      },
+                      {
+                        "userId": "34tirjf84890ijnhry78u9i9oj",
+                        "name": "0",
+                        "lastName": "name_1",
+                        "email2": "lastName_1",
+                        "publications": "1"
+                      }
+                    ]
+                  }
                 }
               }
             }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "": {
+            "description": ""
           }
+        },
+        "operationId": "get-user-get-users",
+        "description": "Obtener todos los usuarios y autores de la plataforma."
+      },
+      "parameters": [
+        {
+          "schema": {
+            "type": "string"
+          },
+          "name": "rol",
+          "in": "path",
+          "required": true
         }
-      }
+      ]
     }
   },
   "components": {
