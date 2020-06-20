@@ -1760,6 +1760,58 @@
         "description": "Se obtiene una lista de todas las publicaciones en las que el autor logueado ha participado"
       },
       "parameters": []
+    },
+    "/user/get-user-authors/{userId}": {
+      "get": {
+        "summary": "Your GET endpoint",
+        "tags": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "lastName": {
+                      "type": "string"
+                    },
+                    "publications": {
+                      "type": "string"
+                    },
+                    "notifications": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "operationId": "get-user-get-user-authors",
+        "description": "userId - opcional\nobtener la lista de los autores a los que está suscrito el usuario logueado u otro usuario"
+      },
+      "parameters": [
+        {
+          "schema": {
+            "type": "string"
+          },
+          "name": "userId",
+          "in": "path"
+        }
+      ]
     }
   },
   "components": {
