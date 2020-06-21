@@ -1,0 +1,2004 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "IngenioUN_API",
+    "version": "1.0",
+    "description": ""
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3000"
+    }
+  ],
+  "paths": {
+    "session/signup": {
+      "post": {
+        "summary": "",
+        "operationId": "post-ingenio-signup",
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "description": "Registrar usuario",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "firstName": {
+                    "type": "string"
+                  },
+                  "lastName": {
+                    "type": "string"
+                  },
+                  "email1": {
+                    "type": "string"
+                  },
+                  "password": {
+                    "type": "string"
+                  },
+                  "description": {
+                    "type": "string"
+                  },
+                  "confirmPassword": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "firstName",
+                  "lastName",
+                  "email1",
+                  "password",
+                  "confirmPassword"
+                ]
+              }
+            }
+          },
+          "description": ""
+        }
+      },
+      "parameters": []
+    },
+    "/session/signin": {
+      "post": {
+        "summary": "",
+        "operationId": "post-ingenio-signin",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "description": "Ingresar como usuario",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email1": {
+                    "type": "string"
+                  },
+                  "password": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "email1",
+                  "password"
+                ]
+              }
+            }
+          }
+        }
+      },
+      "parameters": []
+    },
+    "/session/signout": {
+      "get": {
+        "summary": "Your GET endpoint",
+        "tags": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-ingenio-signout",
+        "requestBody": {},
+        "description": "Cerrar de sesion  "
+      },
+      "parameters": []
+    },
+    "/user/get-personal-data": {
+      "get": {
+        "summary": "Your GET endpoint",
+        "tags": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "firstName": {
+                      "type": "string"
+                    },
+                    "lastName": {
+                      "type": "string"
+                    },
+                    "email1": {
+                      "type": "string"
+                    },
+                    "description": {
+                      "type": "string"
+                    },
+                    "role": {
+                      "type": "integer",
+                      "description": "0 -> Usuario\n1 -> Autor\n2 -> Admin"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-ingenio",
+        "description": "Obtener información basica del perfil de un usuario"
+      },
+      "parameters": []
+    },
+    "/author-request/get-all-author-requests": {
+      "parameters": [],
+      "get": {
+        "summary": "",
+        "operationId": "get-user-author-requests",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "request1": {
+                      "type": "object",
+                      "properties": {
+                        "firstName": {
+                          "type": "string"
+                        },
+                        "lastName": {
+                          "type": "string"
+                        },
+                        "_id": {
+                          "type": "string"
+                        }
+                      }
+                    },
+                    "requestN": {
+                      "type": "object",
+                      "properties": {
+                        "firstName": {
+                          "type": "string"
+                        },
+                        "lastName": {
+                          "type": "string"
+                        },
+                        "_id": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "description": "Obtener lista de solicitudes de usuarios que desean ser autores.",
+        "requestBody": {}
+      }
+    },
+    "/publication/add-publication": {
+      "post": {
+        "summary": "",
+        "operationId": "post-user-add-publication",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "description": "Añadir publicacion ",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "title": {
+                    "type": "string"
+                  },
+                  "abstact": {
+                    "type": "string"
+                  },
+                  "keyWords": {
+                    "type": "string"
+                  },
+                  "text": {
+                    "type": "string"
+                  },
+                  "category": {
+                    "type": "object",
+                    "required": [
+                      "name"
+                    ],
+                    "properties": {
+                      "name": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                },
+                "required": [
+                  "title",
+                  "abstact",
+                  "keyWords",
+                  "text",
+                  "category"
+                ]
+              },
+              "examples": {
+                "example-body": {
+                  "value": {
+                    "title": "Gatito con botas",
+                    "abstract": "Un gatitu con botitas inteligente",
+                    "keyWords": "gato, botas , inteligente",
+                    "text": "Había una vez un gatito muy listo...",
+                    "listCategories": [
+                      "5ec6b12910efb72abcc5a566"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "parameters": []
+    },
+    "/author-request/get-author-request": {
+      "parameters": [],
+      "get": {
+        "summary": "Your GET endpoint",
+        "tags": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "email2": {
+                      "type": "string"
+                    },
+                    "professionalCard": {
+                      "type": "string"
+                    },
+                    "employmentHistory": {
+                      "type": "string"
+                    },
+                    "academicHistory": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-user-author-request-userId",
+        "description": "Obtener informacion de una solicitud específica para adquirir el rol de autor",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "userId": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "description": ""
+        }
+      }
+    },
+    "/user/add-author": {
+      "parameters": [],
+      "put": {
+        "summary": "",
+        "operationId": "put-user-accepted-author-userId",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "description": "Cambiar rol de usuario a autor y poblar los datos extras",
+        "requestBody": {
+          "content": {
+            "application/xml": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "userId": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "userId"
+                ]
+              }
+            }
+          },
+          "description": ""
+        }
+      }
+    },
+    "/author-request/add-author-request": {
+      "post": {
+        "summary": "",
+        "operationId": "post-user-request-author-role",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email2": {
+                    "type": "string"
+                  },
+                  "professionalCard": {
+                    "type": "string"
+                  },
+                  "employmentHistory": {
+                    "type": "string"
+                  },
+                  "academicHistory": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "email2",
+                  "professionalCard",
+                  "employmentHistory",
+                  "academicHistory"
+                ]
+              }
+            }
+          }
+        },
+        "description": "Agregar una nueva solicitud de rol de autor"
+      },
+      "parameters": []
+    },
+    "/category/get-all-categories": {
+      "get": {
+        "summary": "Your GET endpoint",
+        "tags": [],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "example-200": {
+                    "value": [
+                      {
+                        "_id": "5ec6b12910efb72abcc5a566",
+                        "name": "Ingeniería"
+                      },
+                      {
+                        "_id": "5ec72404e2ef0b18bd2ba594",
+                        "name": "Ecología"
+                      }
+                    ]
+                  }
+                }
+              }
+            },
+            "description": ""
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-category-all",
+        "description": "Obtener una lista con todas las categorías"
+      },
+      "parameters": []
+    },
+    "/category/add-category": {
+      "get": {
+        "summary": "Your GET endpoint",
+        "tags": [],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-category-add-category",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "description": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "description": "Agregar una categoría desde el rol Administrador"
+      }
+    },
+    "/publication/get-publication": {
+      "parameters": [],
+      "get": {
+        "summary": "Your GET endpoint",
+        "tags": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "date": {
+                      "type": "string"
+                    },
+                    "authorId": {
+                      "type": "string"
+                    },
+                    "title": {
+                      "type": "string"
+                    },
+                    "abstract": {
+                      "type": "string"
+                    },
+                    "keyWords": {
+                      "type": "string"
+                    },
+                    "text": {
+                      "type": "string"
+                    },
+                    "listCategories": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "example-200": {
+                    "value": {
+                      "keyWords": [
+                        "conejo",
+                        "pais",
+                        "maravillas"
+                      ],
+                      "listCategories": [
+                        "5ec6b12910efb72abcc5a566",
+                        "5ec6b12910efb72abcc5a566"
+                      ],
+                      "_id": "5ec6f43ae6aa851263f6bed2",
+                      "title": "Alicia en el pais",
+                      "abstract": "Tipa en las drogas",
+                      "text": "Había una vez una tipa en las drogas :v",
+                      "date": "2020-05-21T21:35:54.099Z",
+                      "authorId": "5ec0a24e6802f95bbb46f2a8",
+                      "__v": 0
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-publication-publicationId",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  }
+                }
+              },
+              "examples": {
+                "example-body": {
+                  "value": {
+                    "id": "5ec6f43ae6aa851263f6bed2"
+                  }
+                }
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "id"
+                ]
+              }
+            }
+          },
+          "description": ""
+        },
+        "description": "Obtener una publicación en específico."
+      }
+    },
+    "/category/get-list-categories": {
+      "get": {
+        "summary": "Your GET endpoint",
+        "tags": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "example-1": {
+                    "value": [
+                      {
+                        "id": "asgffdg1234",
+                        "name": "Ingeniería"
+                      },
+                      {
+                        "id": "1234rfg",
+                        "name": "Ecología"
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "example-1": {
+                    "value": [
+                      {
+                        "_id": "5ec6b12910efb72abcc5a566",
+                        "name": "Ingeniería"
+                      },
+                      {
+                        "_id": "5ec72404e2ef0b18bd2ba594",
+                        "name": "Ecología"
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-category-get-list-categories",
+        "description": "Dada una lista de IDs de categorias, obtener una lista con la información de las categorías solicitadas",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "listCategories": {
+                    "type": "string"
+                  }
+                }
+              },
+              "examples": {
+                "example-1": {
+                  "value": {
+                    "listCategories": [
+                      "asgffdg1234",
+                      "1234rfg"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/publication/get-all-publications": {
+      "get": {
+        "summary": "Your GET endpoint",
+        "tags": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "date": {
+                      "type": "string"
+                    },
+                    "title": {
+                      "type": "string"
+                    },
+                    "abstract": {
+                      "type": "string"
+                    },
+                    "keyWords": {
+                      "type": "string"
+                    },
+                    "text": {
+                      "type": "string"
+                    },
+                    "authorId": {
+                      "type": "string"
+                    },
+                    "listCategories": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "example-200": {
+                    "value": [
+                      {
+                        "keyWords": [
+                          "conejo",
+                          "pais",
+                          "maravillas"
+                        ],
+                        "listCategories": [
+                          "5ec6b12910efb72abcc5a566",
+                          "5ec6b12910efb72abcc5a566"
+                        ],
+                        "_id": "5ec6f43ae6aa851263f6bed2",
+                        "title": "Alicia en el pais",
+                        "abstract": "Tipa loca en las drogas",
+                        "text": "Había una vez una tipa en las drogas :v",
+                        "date": "2020-05-21T21:35:54.099Z",
+                        "authorId": "5ec0a24e6802f95bbb46f2a8",
+                        "__v": 0
+                      },
+                      {
+                        "keyWords": [
+                          "gato",
+                          "botas",
+                          "inteligente"
+                        ],
+                        "listCategories": [
+                          "5ec6b12910efb72abcc5a566"
+                        ],
+                        "_id": "5ec72326e2ef0b18bd2ba593",
+                        "title": "Gatito con botas",
+                        "abstract": "Un gatitu con botitas inteligente",
+                        "text": "Había una vez un gatito muy listo...",
+                        "date": "2020-05-22T00:56:06.185Z",
+                        "authorId": "5ec0a24e6802f95bbb46f2a8",
+                        "__v": 0
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-publication-get-all-publications",
+        "description": "Obtener una lista con todas las publicaciones"
+      }
+    },
+    "/user/get-following/{userId}": {
+      "get": {
+        "summary": "Your GET endpoint",
+        "tags": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "firstName": {
+                      "type": "string"
+                    },
+                    "lastName": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "Ejemplo": {
+                    "value": [
+                      {
+                        "id": "34tirjf84890ijnhry78u9i9oj",
+                        "firstName": "name_1",
+                        "lastNmae": "lastName_1"
+                      },
+                      {
+                        "id": "7890dfa4tirjfjnhry78u9i9oj",
+                        "firstName": "name_2",
+                        "lastNmae": "lastName_2"
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                },
+                "examples": {}
+              }
+            }
+          }
+        },
+        "operationId": "get-user-get-following",
+        "description": "Obtener lista de personas a las que el usuario esta siguiendo.",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              },
+              "examples": {}
+            }
+          }
+        },
+        "parameters": [
+          {
+            "schema": {
+              "type": "number"
+            },
+            "in": "query",
+            "name": "userId"
+          }
+        ]
+      },
+      "parameters": [
+        {
+          "schema": {
+            "type": "string"
+          },
+          "name": "userId",
+          "in": "path",
+          "required": true
+        }
+      ]
+    },
+    "/user/stop-following/{userId}": {
+      "parameters": [
+        {
+          "schema": {
+            "type": "string"
+          },
+          "name": "userId",
+          "in": "path",
+          "required": true
+        }
+      ],
+      "put": {
+        "summary": "",
+        "operationId": "put-user-stop-following-userId",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "description": "Dejar de seguir un usuario. actualizar lista en ambos usuarios."
+      }
+    },
+    "/user/start-following/{userId}": {
+      "parameters": [
+        {
+          "schema": {
+            "type": "string"
+          },
+          "name": "userId",
+          "in": "path",
+          "required": true
+        }
+      ],
+      "post": {
+        "summary": "",
+        "operationId": "post-user-start-following-userId",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "description": "Añadir seguidor en la lista de usuario. actualizar en ambos. \n\nPuede mandar Id de Autor, Usuario, Categoria."
+      }
+    },
+    "/user/get-user-categories/{userId}": {
+      "get": {
+        "summary": "Your GET endpoint",
+        "tags": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "categoryId": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "description": {
+                      "type": "string"
+                    },
+                    "subscribe": {
+                      "type": "boolean"
+                    },
+                    "publications": {
+                      "type": "number"
+                    },
+                    "notifications": {
+                      "type": "number"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "operationId": "get-category-get-user-categories",
+        "description": "Obtiene la lista de categorias e indica si se esta sucrito a cada uno de ellas.\n\nAdemas obtenemos el nuimero total de notificaciones recientes.\n\n(El parametro notifications no se mostrara sino se encuentra el usuario en su perfil Y si no esta suscrito (FRONT))"
+      },
+      "parameters": [
+        {
+          "schema": {
+            "type": "string"
+          },
+          "name": "userId",
+          "in": "path",
+          "required": true
+        }
+      ]
+    },
+    "/user/get-followers/{userId}": {
+      "get": {
+        "summary": "Your GET endpoint",
+        "tags": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "following": {
+                      "type": "string"
+                    },
+                    "firstName": {
+                      "type": "string"
+                    },
+                    "lastName": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "Ejemplo": {
+                    "value": [
+                      {
+                        "id": "34tirjf84890ijnhry78u9i9oj",
+                        "following": "0",
+                        "firstName": "name_1",
+                        "lastNmae": "lastName_1"
+                      },
+                      {
+                        "id": "7890dfa4tirjfjnhry78u9i9oj",
+                        "following": "1",
+                        "firstName": "name_2",
+                        "lastNmae": "lastName_2"
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "operationId": "get-user-get-followers",
+        "description": "Obtener los seguidores O subscritores de un usuario o autor respectivamente."
+      },
+      "parameters": [
+        {
+          "schema": {
+            "type": "string"
+          },
+          "name": "userId",
+          "in": "path"
+        }
+      ]
+    },
+    "/notification/get-notifications/{Id}": {
+      "get": {
+        "summary": "Your GET endpoint",
+        "tags": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "Caso Category ": {
+                    "value": [
+                      {
+                        "id": "0",
+                        "publicationId": "125651253",
+                        "publicationName": "Test",
+                        "categoryName": "Ingenieria",
+                        "authorName": "pepito",
+                        "authorLastName": "perez"
+                      },
+                      {
+                        "id": "0",
+                        "publicationId": "125651253",
+                        "publicationName": "Test",
+                        "categoryName": "Ingenieria",
+                        "authorName": "pepito",
+                        "authorLastName": "perez"
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "operationId": "get-notification-get-notifications",
+        "description": "Obtiene todas las notificaciones de un usuario para una categoria o un autor.\nEnviar:   \n        -  authorId\n        -  categoryId"
+      },
+      "parameters": [
+        {
+          "schema": {
+            "type": "string"
+          },
+          "name": "Id",
+          "in": "path",
+          "required": true
+        }
+      ]
+    },
+    "/notification/remove-notification/{notificationId}": {
+      "get": {
+        "summary": "Your GET endpoint",
+        "tags": [],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "operationId": "get-notification-remove-notification",
+        "description": "Eliminar notificacion del usuario."
+      },
+      "parameters": [
+        {
+          "schema": {
+            "type": "string"
+          },
+          "name": "notificationId",
+          "in": "path",
+          "required": true
+        }
+      ]
+    },
+    "/notification/remove-all-notification/{Id}": {
+      "get": {
+        "summary": "Your GET endpoint",
+        "tags": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "operationId": "get-notification-remove-all-notification",
+        "description": "Remueve todas las notificaciones de categoryId o authorId"
+      },
+      "parameters": [
+        {
+          "schema": {
+            "type": "string"
+          },
+          "name": "Id",
+          "in": "path",
+          "required": true
+        }
+      ]
+    },
+    "/user/get-saved-publications/{userId}": {
+      "parameters": [
+        {
+          "schema": {
+            "type": "string"
+          },
+          "name": "userId",
+          "in": "path"
+        }
+      ],
+      "get": {
+        "summary": "",
+        "operationId": "get-user-get-saved-publications-userId",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "publicationId": {
+                      "type": "string"
+                    },
+                    "namePublication": {
+                      "type": "string"
+                    },
+                    "abstract": {
+                      "type": "string"
+                    },
+                    "listCategories": {
+                      "type": "array",
+                      "items": {}
+                    },
+                    "authorName": {
+                      "type": "string"
+                    },
+                    "authorLastName": {
+                      "type": "string"
+                    },
+                    "authorId": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "description": "Obtiene las publicaciones guardadas por el usuario de userId o por mí."
+      }
+    },
+    "/user/get-users/{rol}": {
+      "get": {
+        "summary": "Your GET endpoint",
+        "tags": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                },
+                "examples": {
+                  "Caso Usuarios": {
+                    "value": [
+                      {
+                        "userId": "34tirjf84890ijnhry78u9i9oj",
+                        "name": "0",
+                        "lastName": "name_1",
+                        "email1": "lastName_1"
+                      },
+                      {
+                        "userId": "34tirjf84890ijnhry78u9i9oj",
+                        "name": "0",
+                        "lastName": "name_1",
+                        "email1": "lastName_1"
+                      }
+                    ]
+                  },
+                  "Caso Autores": {
+                    "value": [
+                      {
+                        "userId": "34tirjf84890ijnhry78u9i9oj",
+                        "name": "0",
+                        "lastName": "name_1",
+                        "email2": "lastName_1",
+                        "publications": "5"
+                      },
+                      {
+                        "userId": "34tirjf84890ijnhry78u9i9oj",
+                        "name": "0",
+                        "lastName": "name_1",
+                        "email2": "lastName_1",
+                        "publications": "1"
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "": {
+            "description": ""
+          }
+        },
+        "operationId": "get-user-get-users",
+        "description": "Obtener todos los usuarios y autores de la plataforma."
+      },
+      "parameters": [
+        {
+          "schema": {
+            "type": "string"
+          },
+          "name": "rol",
+          "in": "path",
+          "required": true
+        }
+      ]
+    },
+    "/publication/get-publications-by-author": {
+      "get": {
+        "summary": "Your GET endpoint",
+        "tags": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "publicationId": {
+                      "type": "string"
+                    },
+                    "publicationName": {
+                      "type": "string"
+                    },
+                    "date": {
+                      "type": "string"
+                    },
+                    "numCategories": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "operationId": "get-publication-get-publications-by-author",
+        "description": "Se obtiene una lista de todas las publicaciones en las que el autor logueado ha participado"
+      },
+      "parameters": []
+    },
+    "/user/get-user-authors/{userId}": {
+      "get": {
+        "summary": "Your GET endpoint",
+        "tags": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "lastName": {
+                      "type": "string"
+                    },
+                    "publications": {
+                      "type": "string"
+                    },
+                    "notifications": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "operationId": "get-user-get-user-authors",
+        "description": "userId - opcional\nobtener la lista de los autores a los que está suscrito el usuario logueado u otro usuario"
+      },
+      "parameters": [
+        {
+          "schema": {
+            "type": "string"
+          },
+          "name": "userId",
+          "in": "path"
+        }
+      ]
+    },
+    "/user/get-random-user/{amount}": {
+      "get": {
+        "summary": "Your GET endpoint",
+        "tags": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "userID": {
+                      "type": "string"
+                    },
+                    "Name": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "operationId": "get-user-get-random-user",
+        "description": "Retorna una cantidad aleatoria de usuarios con su nombre y Id. cantidad determinada por amount. (No requerida)\n\npor defecto retornara 3."
+      },
+      "parameters": [
+        {
+          "schema": {
+            "type": "number"
+          }
+        },
+        {
+          "schema": {
+            "type": "integer"
+          },
+          "name": "amount",
+          "in": "path",
+          "required": true
+        }
+      ]
+    }
+  },
+  "components": {
+    "schemas": {
+      "User": {
+        "title": "User",
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "firstName": {
+            "type": "string"
+          },
+          "lastName": {
+            "type": "string"
+          },
+          "email1": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "role": {
+            "type": "integer",
+            "description": "0 -> Usuario\n1 -> Autor\n2 -> Administrador"
+          },
+          "email2": {
+            "type": "string"
+          },
+          "professionalCard": {
+            "type": "string"
+          },
+          "employmentHistory": {
+            "type": "string"
+          },
+          "academicHistory": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "firstName",
+          "lastName",
+          "email1",
+          "password",
+          "role"
+        ],
+        "description": ""
+      },
+      "AuthorRequest": {
+        "title": "AuthorRequest",
+        "type": "object",
+        "x-examples": {},
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          " date": {
+            "type": "string"
+          },
+          "email2": {
+            "type": "string"
+          },
+          "professionalCard": {
+            "type": "string"
+          },
+          "amploymentHistory": {
+            "type": "string"
+          },
+          "academicHistory": {
+            "type": "string"
+          },
+          "userId ": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          " date",
+          "email2",
+          "professionalCard",
+          "amploymentHistory",
+          "academicHistory",
+          "userId "
+        ],
+        "description": ""
+      },
+      "Publication": {
+        "title": "Publication",
+        "type": "object",
+        "description": "",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "date": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "abstract": {
+            "type": "string"
+          },
+          "keyWords": {
+            "type": "string"
+          },
+          "text": {
+            "type": "string"
+          },
+          "userId": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "lastName": {
+            "type": "string"
+          },
+          "category": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "date",
+          "title",
+          "abstract",
+          "keyWords",
+          "text",
+          "userId",
+          "name",
+          "lastName",
+          "category"
+        ]
+      },
+      "Category": {
+        "title": "Category",
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          }
+        },
+        "description": "Categoría de una publicación"
+      }
+    }
+  }
+}
